@@ -1,11 +1,11 @@
 ===========
-adjutant-ui
+envoy_translator-ui
 ===========
 
-Adjutant Dashboard
+Envoy Translator Dashboard
 
 * Free software: Apache license
-* Source: https://github.com/openstack/adjutant-ui
+* Source: https://github.com/semicolon-cloud/envoy_translator-ui
 
 This is the Horizon plugin for the Adjutant service, and provides UI elements
 to the core features that Adjutant adds.
