@@ -75,7 +75,7 @@ class ExternalListenersTable(tables.DataTable):
         return datum['uuid']
 
 class ListenerRoutesTable(tables.DataTable):
-    uuid = tables.Column("uuid", verbose_name=_("UUID"))
+    uuid = tables.Column("uuid", verbose_name=_("UUID"), link=("horizon:project:routes:detail"))
     project_id = tables.Column("project_id", verbose_name="Project")
     keystone_user = tables.Column("keystone_user", verbose_name="Owner")
     domain_names = tables.Column("domain_names", verbose_name="Domain Names")

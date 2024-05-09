@@ -13,7 +13,7 @@
       <dt>{% trans "ID" %}</dt>
       <dd>{{ route.uuid }}</dd>
       <dt>{% trans "Listener" %}</dt>
-      <dd>{{ route.listener }}</dd>
+      <dd><a href="{% url 'horizon:project:listeners:detail' route.listener %}">{{ route.listener }}</a></dd>
       <dt>{% trans "External IP" %}</dt>
       <dd>{{ route.external_ip }}</dd>
       <dt>{% trans "Port" %}</dt>
@@ -24,8 +24,6 @@
       <dd>{{ route.domain_names }}</dd>
       <dt>{% trans "Target Servers" %}</dt>
       <dd>{{ route.target_servers }}</dd>
-{#      <dt>{% trans "Task" %}</dt>#}
-{#      <dd><a href="{% url 'horizon:management:tasks:detail' notification.task %}">{{ notification.task }}</a></dd>#}
       <dt>{% trans "Creator" %}</dt>
       <dd>{{ route.keystone_user }}</dd>
       <dt>{% trans "Project ID" %}</dt>
