@@ -40,7 +40,7 @@ class IndexView(horizon_tables.DataTableView):
             return []
 
 class ListenerDetailView(tabs.TabView):
-    tab_group_class = listener_tabs.TaskDetailTabs
+    tab_group_class = listener_tabs.ListenerDetailTabs
     template_name = 'horizon/common/_detail.html'
     redirect_url = 'horizon:project:listeners:index'
     page_title = "{{ listener.listener_name }}"
