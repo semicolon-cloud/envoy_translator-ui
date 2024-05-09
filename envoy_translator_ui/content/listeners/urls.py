@@ -14,8 +14,7 @@
 
 from django.conf.urls import url
 
-from adjutant_ui.content.quota import views
-
+from envoy_translator_ui.content.listeners import views
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
