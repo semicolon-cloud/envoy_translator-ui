@@ -41,7 +41,7 @@ class IndexView(horizon_tables.DataTableView):
 
 class RouteDetailView(views.HorizonTemplateView):
     redirect_url = "horizon:project:routes:index"
-    template_name = 'routes/detail.html'
+    template_name = 'project/routes/detail.html'
     page_title = "Route Details: {{ route.uuid }}"
 
     def get_context_data(self, **kwargs):
