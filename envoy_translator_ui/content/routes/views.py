@@ -68,14 +68,14 @@ class RouteDetailView(views.HorizonTemplateView):
             exceptions.handle(self.request, msg, redirect=url)
 
 
-# class CreateRouteView(forms.ModalFormView):
-#     form_class = route_forms.CreateRouteForm
-#     form_id = "create_route_form"
-#     modal_header = _("Create Route")
-#     submit_label = _("Create Route")
-#     submit_url = reverse_lazy('horizon:project:routes:create')
-#     template_name = 'project/routes/create.html'
-#     context_object_name = 'project_users'
-#     success_url = reverse_lazy("horizon:project:routes:index")
-#     page_title = _("Create Route")
+class CreateRouteView(forms.ModalFormView):
+    form_class = route_forms.CreateRouteForm
+    form_id = "create_route_form"
+    modal_header = _("Create Route")
+    submit_label = _("Create Route")
+    submit_url = reverse_lazy('horizon:project:routes:create')
+    template_name = 'project/routes/create.html'
+    context_object_name = 'project_users'
+    success_url = reverse_lazy("horizon:project:routes:index")
+    page_title = _("Create Route")
 

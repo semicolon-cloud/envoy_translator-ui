@@ -59,7 +59,7 @@ class ExternalRoutesTable(tables.DataTable):
     class Meta(object):
         name = "routes"
         verbose_name = _("Routes")
-        # table_actions = (CreateRoute, )
+        table_actions = (CreateRoute, )
         row_actions = (DeleteRoute, )
 
     def get_object_id(self, datum):

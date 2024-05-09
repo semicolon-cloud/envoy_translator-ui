@@ -20,11 +20,5 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<route_id>[^/]+)$',
             views.RouteDetailView.as_view(), name='detail'),
-    # url(r'^create/$', views.CreateListenerView.as_view(), name='create'),
-    # url(r'^region/(?P<region>[^/]+)$', views.RegionDetailView.as_view(),
-    #     name='region_detail'),
-    # url(r'^(?P<region>[^/]+)/update$',
-    #     views.RegionUpdateView.as_view(), name='update'),
-    # url(r'^size/(?P<size>[^/]+)$', views.QuotaSizeView.as_view(),
-    #     name='size_detail'),
+    url(r'^create/$', views.CreateRouteView.as_view(), name='create'),
 ]
