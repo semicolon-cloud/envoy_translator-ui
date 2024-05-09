@@ -29,13 +29,13 @@ class CreateRouteForm(forms.SelfHandlingForm):
     domain_names = forms.CharField(max_length=255, required=True, label=_("list of domains"), widget=forms.widgets.Textarea())
     target_servers = forms.CharField(
         required=True, label=_("List of target servers in ip:port"), widget=forms.widgets.Textarea())
-    listener = forms.ChoiceField(label=_("Listener"),
+    listener_id = forms.ChoiceField(label=_("Listener"),
                              required=True)
 
     def __init__(self, *args, **kwargs):
         super(CreateRouteForm, self).__init__(*args, **kwargs)
         choices = get_listener_choices(self.request)
-        self.fields['listener'].choices = choices
+        self.fields['listener_id'].choices = choices
 
 
     def handle(self, request, data):
