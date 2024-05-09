@@ -19,9 +19,9 @@ from adjutant_ui.content.quota import views
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<listener_id>[^/]+)$',
-            views.UpdateUserView.as_view(),
-            name='listener_detail'),
+    # url(r'^(?P<listener_id>[^/]+)$',
+    #         views.UpdateUserView.as_view(),
+    #         name='listener_detail'),
     # url(r'^region/(?P<region>[^/]+)$', views.RegionDetailView.as_view(),
     #     name='region_detail'),
     # url(r'^(?P<region>[^/]+)/update$',
