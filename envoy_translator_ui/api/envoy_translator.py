@@ -86,3 +86,15 @@ def listener_list(request):
         LOG.error(e)
         raise
 
+
+def listener_get(request, listener_id):
+    try:
+        headers = {'Content-Type': 'application/json',
+                   'X-Auth-Token': request.user.token.id}
+        resp = json.loads(get(request, 'listeners/%s' % listener_id,
+                              headers=headers).content)
+        return resp
+    except Exception as e:
+        LOG.error(e)
+        raise
+

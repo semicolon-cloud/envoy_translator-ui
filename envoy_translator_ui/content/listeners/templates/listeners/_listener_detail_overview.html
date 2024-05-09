@@ -1,0 +1,25 @@
+{% load i18n sizeformat %}
+{% load task_filters %}
+
+<div class="detail">
+  <h4>{% trans "Listener Details" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ listener.uuid }}</dd>
+    <dt>{% trans "Type" %}</dt>
+    <dd>{{ listener.type }}</dd>
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ listener.listener_name }}</dd>
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ listener.description }}</dd>
+    <dt>{% trans "Internal Attach Ip" %}</dt>
+    <dd>{{ listener.ip }}</dd>
+    <dt>{% trans "External Ip" %}</dt>
+    <dd>{{ listener.external_ip }}</dd>
+    <dt>{% trans "External Port" %}</dt>
+    <dd>{{ listener.port }}</dd>
+    <dt>{% trans "Created on" %}</dt>
+    <dd>{{ listener.created_on }}</dd>
+  </dl>
+</div>

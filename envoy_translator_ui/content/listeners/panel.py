@@ -19,5 +19,5 @@ import horizon
 
 class ListenerPanel(horizon.Panel):
     name = _("External Listeners")
-    slug = 'listener'
+    slug = 'listeners'
     # policy_rules = (('identity', "project_mod_or_admin"),)
