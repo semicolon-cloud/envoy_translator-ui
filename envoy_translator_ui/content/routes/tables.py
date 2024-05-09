@@ -55,7 +55,6 @@ class UpdateRoute(tables.LinkAction):
     url = "horizon:project:routes:update"
     classes = ("ajax-modal",)
     policy_rules = (('identity', "project_mod_or_admin"),)
-    icon = "plus"
 
 class ExternalRoutesTable(tables.DataTable):
     id = tables.Column("uuid", verbose_name=_("UUID"), link=("horizon:project:routes:detail"))
