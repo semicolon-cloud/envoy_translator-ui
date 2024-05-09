@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^(?P<route_id>[^/]+)$',
             views.RouteDetailView.as_view(), name='detail'),
     url(r'^create/$', views.CreateRouteView.as_view(), name='create'),
-    url(r'^update/$', views.UpdateRouteView.as_view(), name='update'),
+    url(r'^(?P<route_id>[^/]+)/update/$', views.UpdateRouteView.as_view(), name='update'),
 ]
