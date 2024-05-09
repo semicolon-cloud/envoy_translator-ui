@@ -117,3 +117,52 @@ def listener_create(request, listener):
                 headers=headers, data=json.dumps(listener))
 
 
+def route_list(request):
+    try:
+        headers = {'Content-Type': 'application/json',
+                   'X-Auth-Token': request.user.token.id}
+        resp = json.loads(get(request, 'routes',
+                              headers=headers).content)
+
+        return resp['routes']
+    except Exception as e:
+        LOG.error(e)
+        raise
+
+
+
+def route_get(request, route_id):
+    try:
+        headers = {'Content-Type': 'application/json',
+                   'X-Auth-Token': request.user.token.id}
+        resp = json.loads(get(request, 'routes/%s' % route_id,
+                              headers=headers).content)
+
+        return resp
+    except Exception as e:
+        LOG.error(e)
+        raise
+
+def route_delete(request, route_id):
+    try:
+        headers = {'Content-Type': 'application/json',
+                   'X-Auth-Token': request.user.token.id}
+        return delete(request, 'routes/%s' % route_id,
+                                 headers=headers)
+    except Exception as e:
+        LOG.error(e)
+        raise
+
+
+def route_create(request, route):
+    headers = {'Content-Type': 'application/json',
+               'X-Auth-Token': request.user.token.id}
+    return post(request, 'routes',
+                headers=headers, data=json.dumps(route))
+
+
+def route_update(request, route_id, route):
+    headers = {'Content-Type': 'application/json',
+               'X-Auth-Token': request.user.token.id}
+    return put(request, 'routes/%s' % route_id,
+                headers=headers, data=json.dumps(route))
