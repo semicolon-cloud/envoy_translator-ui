@@ -79,3 +79,48 @@ class CreateRouteView(forms.ModalFormView):
     success_url = reverse_lazy("horizon:project:routes:index")
     page_title = _("Create Route")
 
+
+
+
+
+class UpdateRouteView(forms.ModalFormView):
+    form_class = route_forms.UpdateRouteForm
+    form_id = "update_route_form"
+    modal_header = _("Update Route")
+    submit_label = _("Update")
+    submit_url = 'horizon:project:routes:update'
+    template_name = 'project/routes/update.html'
+    context_object_name = 'project_users'
+    success_url = "horizon:project:routes:detail"
+    page_title = _("Update Route")
+
+    def get_success_url(self):
+        return reverse(self.success_url,
+                       args=(self.kwargs['route_id'],))
+
+    @memoized.memoized_method
+    def get_object(self):
+        try:
+            return envoy_translator.route_get(self.request,
+                                     self.kwargs['route_id']).json()
+        except Exception:
+            msg = _('Unable to retrieve route.')
+            url = reverse('horizon:management:tasks:index')
+            exceptions.handle(self.request, msg, redirect=url)
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateRouteView, self).get_context_data(**kwargs)
+        context['route'] = self.get_object()
+        args = (self.kwargs['route_id'],)
+        context['submit_url'] = reverse(self.submit_url, args=args)
+        return context
+
+    def get_initial(self):
+        route = self.get_object()
+
+        data = {
+            'route_id': self.kwargs['route_id'],
+            'domain_names': '\n'.join(route["domain_names"]),
+            'target_servers': '\n'.join([a['ip'] + ":" + a["port"] for a in route["target_servers"]]),
+        }
+        return data

@@ -19,7 +19,7 @@ def get_listener_choices(request):
     user can manage.
     """
     listeners = envoy_translator.listener_list(request)
-    listener_tuples = [(r.uuid, r.listener_name) for r in listeners]
+    listener_tuples = [(r['uuid'], r['listener_name']) for r in listeners]
     listener_tuples = sorted(listener_tuples, key=lambda listener: listener[1])
     return listener_tuples
 
@@ -60,12 +60,6 @@ class UpdateRouteForm(forms.SelfHandlingForm):
     domain_names = forms.CharField(max_length=255, required=True, label=_("list of domains"), widget=forms.widgets.Textarea())
     target_servers = forms.CharField(
         required=True, label=_("List of target servers in ip:port"), widget=forms.widgets.Textarea())
-
-    def __init__(self, *args, **kwargs):
-        super(UpdateRouteForm, self).__init__(*args, **kwargs)
-        self.fields["domain_names"].initial = '\n'.join(kwargs["domain_names"])
-        self.fields["target_servers"].initial = '\n'.join([a['ip']+":"+a["port"] for a in kwargs["target_servers"]])
-
     def handle(self, request, data):
         try:
             data["domain_names"] = data["domain_names"].split("\n")

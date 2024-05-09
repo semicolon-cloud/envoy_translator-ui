@@ -48,6 +48,15 @@ class CreateRoute(tables.LinkAction):
     policy_rules = (('identity', "project_mod_or_admin"),)
     icon = "plus"
 
+
+class UpdateRoute(tables.LinkAction):
+    name = "update"
+    verbose_name = _("Update Route")
+    url = "horizon:project:routes:update"
+    classes = ("ajax-modal",)
+    policy_rules = (('identity', "project_mod_or_admin"),)
+    icon = "plus"
+
 class ExternalRoutesTable(tables.DataTable):
     id = tables.Column("uuid", verbose_name=_("UUID"), link=("horizon:project:routes:detail"))
     ip = tables.Column("external_ip", verbose_name=_("External IP"))
@@ -60,7 +69,7 @@ class ExternalRoutesTable(tables.DataTable):
         name = "routes"
         verbose_name = _("Routes")
         table_actions = (CreateRoute, )
-        row_actions = (DeleteRoute, )
+        row_actions = (UpdateRoute, DeleteRoute)
 
     def get_object_id(self, datum):
         """Returns the identifier for the object this row will represent.
