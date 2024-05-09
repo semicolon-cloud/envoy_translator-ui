@@ -28,7 +28,7 @@ from envoy_translator_ui.content.listeners import tables
 class IndexView(horizon_tables.DataTableView):
     page_title = _("External Listeners")
     table_class = tables.ExternalListenersTable
-    template_name = 'envoy/listeners/index.html'
+    template_name = 'project/listeners/index.html'
 
     def get_data(self):
         try:
