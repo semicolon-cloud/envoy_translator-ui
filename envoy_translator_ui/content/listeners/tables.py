@@ -40,8 +40,8 @@ class DeleteListener(tables.DeleteAction):
 
 
 class CreateListener(tables.LinkAction):
-    name = "invite"
-    verbose_name = _("Invite User")
+    name = "create"
+    verbose_name = _("Create Listener")
     url = "horizon:project:listeners:create"
     classes = ("ajax-modal",)
     icon = "plus"
