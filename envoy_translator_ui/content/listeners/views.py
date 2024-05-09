@@ -24,6 +24,7 @@ from horizon.utils import memoized
 from envoy_translator_ui.content.listeners import tabs as listener_tabs
 
 from envoy_translator_ui.api import envoy_translator
+from envoy_translator_ui.content.listeners import forms as listener_forms
 from envoy_translator_ui.content.listeners import tables
 
 
@@ -52,7 +53,12 @@ class ListenerDetailView(tabs.TabView):
         context["listener"] = listener
         context["routes"] = routes
         context["url"] = reverse(self.redirect_url)
+        context["actions"] = self._get_actions(listener=listener)
         return context
+
+    def _get_actions(self, listener):
+        table = tables.ExternalListenersTable(self.request)
+        return table.render_row_actions(listener)
 
     @memoized.memoized_method
     def get_data(self):
@@ -63,3 +69,15 @@ class ListenerDetailView(tabs.TabView):
     def get_tabs(self, request, *args, **kwargs):
         listener, routes = self.get_data()
         return self.tab_group_class(request, listener=listener, routes=routes, **kwargs)
+
+class CreateListenerView(forms.ModalFormView):
+    form_class = listener_forms.CreateListenerForm
+    form_id = "create_listener_form"
+    modal_header = _("Create Listener")
+    submit_label = _("Create Listener")
+    submit_url = reverse_lazy('horizon:project:listeners:create')
+    template_name = 'project/listeners/create.html'
+    context_object_name = 'project_users'
+    success_url = reverse_lazy("horizon:project:listeners:index")
+    page_title = _("Create Listener")
+

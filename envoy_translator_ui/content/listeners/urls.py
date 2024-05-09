@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<listener_id>[^/]+)$',
             views.ListenerDetailView.as_view(), name='detail'),
+    url(r'^create/$', views.CreateListenerView.as_view(), name='create'),
     # url(r'^region/(?P<region>[^/]+)$', views.RegionDetailView.as_view(),
     #     name='region_detail'),
     # url(r'^(?P<region>[^/]+)/update$',

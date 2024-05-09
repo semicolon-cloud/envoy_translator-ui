@@ -98,3 +98,22 @@ def listener_get(request, listener_id):
         LOG.error(e)
         raise
 
+
+def listener_delete(request, listener_id):
+    try:
+        headers = {'Content-Type': 'application/json',
+                   'X-Auth-Token': request.user.token.id}
+        return delete(request, 'listeners/%s' % listener_id,
+                              headers=headers)
+    except Exception as e:
+        LOG.error(e)
+        raise
+
+
+def listener_create(request, listener):
+    headers = {'Content-Type': 'application/json',
+               'X-Auth-Token': request.user.token.id}
+    return post(request, 'listeners',
+                headers=headers, data=json.dumps(listener))
+
+
