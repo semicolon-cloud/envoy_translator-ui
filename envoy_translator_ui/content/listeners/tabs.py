@@ -18,6 +18,7 @@ class ListenerRoutesTab(tabs.TableTab):
     table_classes = (listener_tables.RoutesTable,)
     template_name = ("horizon/common/_detail_table.html")
     preload = False
+    policy_rules = (("identity", "admin_required"),)
 
     def get_routes_data(self):
         return self.tab_group.kwargs['routes']
