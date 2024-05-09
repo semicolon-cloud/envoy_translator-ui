@@ -170,7 +170,7 @@ class SizeOverviewTable(tables.DataTable):
     id = tables.Column("id", hidden=True)
     size = tables.Column("name", verbose_name=_("Size Name"),
                          filters=(to_caps, ))
-
+    horizon.Das
     class Meta(object):
         name = "size_overview"
         row_actions = (ViewSize, )
