@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ungettext_lazy
 
 from horizon import tables
 from horizon import exceptions
@@ -19,6 +20,22 @@ class DeleteListener(tables.DeleteAction):
     def allowed(self, request, listener=None):
         return True
 
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Listener",
+            u"Delete Listeners",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Listener",
+            u"Deleted Listeners",
+            count
+        )
 
 
 
