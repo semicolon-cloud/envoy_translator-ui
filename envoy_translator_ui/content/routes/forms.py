@@ -28,7 +28,7 @@ def get_listener_choices(request):
 class CreateRouteForm(forms.SelfHandlingForm):
     domain_names = forms.CharField(max_length=255, required=True, label=_("list of domains"), widget=forms.widgets.Textarea())
     target_servers = forms.CharField(
-        required=True, label=_("List of target servers in ip:port"), widget=forms.widgets.Textarea()
+        required=True, label=_("List of target servers in ip:port"), widget=forms.widgets.Textarea())
     listener = forms.ChoiceField(label=_("Listener"),
                              required=True)
 
@@ -44,6 +44,34 @@ class CreateRouteForm(forms.SelfHandlingForm):
             data["target_servers"] = [ {"ip": a.split(":")[0], "port": a.split(":")[1]} for a in data["target_servers"].split("\n") ]
 
             response = envoy_translator.route_create(request, data)
+            if response.status_code == 200:
+                messages.success(request, _('Created route successfully.'))
+            else:
+                messages.error(request, _('Failed to create route.'))
+            return True
+        except Exception:
+            messages.error(request, _('Failed to create route.'))
+            return False
+
+
+
+class UpdateRouteForm(forms.SelfHandlingForm):
+    route_id = forms.CharField(widget=forms.HiddenInput())
+    domain_names = forms.CharField(max_length=255, required=True, label=_("list of domains"), widget=forms.widgets.Textarea())
+    target_servers = forms.CharField(
+        required=True, label=_("List of target servers in ip:port"), widget=forms.widgets.Textarea())
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateRouteForm, self).__init__(*args, **kwargs)
+        self.fields["domain_names"].initial = '\n'.join(kwargs["domain_names"])
+        self.fields["target_servers"].initial = '\n'.join([a['ip']+":"+a["port"] for a in kwargs["target_servers"]])
+
+    def handle(self, request, data):
+        try:
+            data["domain_names"] = data["domain_names"].split("\n")
+            data["target_servers"] = [ {"ip": a.split(":")[0], "port": a.split(":")[1]} for a in data["target_servers"].split("\n") ]
+
+            response = envoy_translator.route_update(request, data["route_id"], data)
             if response.status_code == 200:
                 messages.success(request, _('Created route successfully.'))
             else:
