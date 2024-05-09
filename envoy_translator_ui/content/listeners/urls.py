@@ -21,3 +21,4 @@ urlpatterns = [
     url(r'^(?P<listener_id>[^/]+)$',
             views.ListenerDetailView.as_view(), name='detail'),
     url(r'^create/$', views.CreateListenerView.as_view(), name='create'),
+]
