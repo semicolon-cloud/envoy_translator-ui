@@ -37,7 +37,7 @@ class IndexView(horizon_tables.DataTableView):
         try:
             return envoy_translator.listener_list(self.request)
         except Exception:
-            exceptions.handle(self.request, _('Failed to list quota sizes.'))
+            exceptions.handle(self.request, _('Failed to list listeners.'))
             return []
 
 class ListenerDetailView(tabs.TabView):
