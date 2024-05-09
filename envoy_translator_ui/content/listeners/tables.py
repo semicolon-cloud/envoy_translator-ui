@@ -24,4 +24,4 @@ class ExternalListenersTable(tables.DataTable):
             Make sure that the value returned is a unique value for the id
             otherwise rendering issues can occur.
         """
-        return datum.uuid
+        return datum['uuid']
