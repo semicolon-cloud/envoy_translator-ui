@@ -47,7 +47,7 @@ class CreateRouteForm(forms.SelfHandlingForm):
             if response.status_code == 200:
                 messages.success(request, _('Created route successfully.'))
             else:
-                messages.error(request, _('Failed to create route.'))
+                messages.error(request, _('Failed to create route. : %s' % response.text))
             return True
         except Exception:
             messages.error(request, _('Failed to create route.'))
@@ -67,9 +67,9 @@ class UpdateRouteForm(forms.SelfHandlingForm):
 
             response = envoy_translator.route_update(request, data["route_id"], data)
             if response.status_code == 200:
-                messages.success(request, _('Created route successfully.'))
+                messages.success(request, _('Updated route successfully.'))
             else:
-                messages.error(request, _('Failed to create route.'))
+                messages.error(request, _('Failed to update route. %s ' % response.text))
             return True
         except Exception:
             messages.error(request, _('Failed to create route.'))

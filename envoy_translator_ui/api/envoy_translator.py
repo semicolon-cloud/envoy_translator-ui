@@ -137,7 +137,6 @@ def route_get(request, route_id):
                    'X-Auth-Token': request.user.token.id}
         resp = json.loads(get(request, 'routes/%s' % route_id,
                               headers=headers).content)
-
         return resp
     except Exception as e:
         LOG.error(e)

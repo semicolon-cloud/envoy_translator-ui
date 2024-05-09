@@ -60,8 +60,8 @@ class RouteDetailView(views.HorizonTemplateView):
     @memoized.memoized_method
     def get_data(self):
         try:
-            notification = envoy_translator.route_get(self.request, self.kwargs['route_id'])
-            return notification
+            route = envoy_translator.route_get(self.request, self.kwargs['route_id'])
+            return route
         except Exception:
             msg = _('Unable to retrieve route.')
             url = reverse('horizon:project:routes:index')
@@ -99,7 +99,7 @@ class UpdateRouteView(forms.ModalFormView):
     def get_object(self):
         try:
             return envoy_translator.route_get(self.request,
-                                     self.kwargs['route_id']).json()
+                                     self.kwargs['route_id'])
         except Exception:
             msg = _('Unable to retrieve route.')
             url = reverse('horizon:management:tasks:index')
