@@ -8,6 +8,7 @@ from horizon import exceptions
 from envoy_translator_ui.api import envoy_translator
 class DeleteListener(tables.DeleteAction):
     name = 'Delete Listener'
+    policy_rules = (("identity", "admin_required"),)
     def delete(self, request, obj_id):
         result = envoy_translator.listener_delete(request, obj_id)
 
@@ -44,10 +45,12 @@ class CreateListener(tables.LinkAction):
     verbose_name = _("Create Listener")
     url = "horizon:project:listeners:create"
     classes = ("ajax-modal",)
+    policy_rules = (("identity", "admin_required"),)
     icon = "plus"
 
 class ExternalListenersTable(tables.DataTable):
-    name = tables.Column("listener_name", verbose_name=_("Name"), link=("horizon:project:listeners:detail"))
+    name = tables.Column("listener_name", verbose_name=_("Name"),
+                         link=("horizon:project:listeners:detail"))
     status = tables.Column("external_ip", verbose_name=_("External IP"))
     port = tables.Column("port", verbose_name=_("External Port"))
     type = tables.Column("type", verbose_name=_("Type"))
