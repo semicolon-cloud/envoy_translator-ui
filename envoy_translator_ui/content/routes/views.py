@@ -21,7 +21,6 @@ from horizon import tabs
 from horizon import forms
 from horizon import tables as horizon_tables
 from horizon.utils import memoized
-from envoy_translator_ui.content.routes import tabs as route_tabs
 
 from envoy_translator_ui.api import envoy_translator
 from envoy_translator_ui.content.routes import forms as route_forms
