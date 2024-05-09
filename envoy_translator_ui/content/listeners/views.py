@@ -63,7 +63,7 @@ class ListenerDetailView(tabs.TabView):
     @memoized.memoized_method
     def get_data(self):
         obj = envoy_translator.listener_get(self.request, self.kwargs['listener_id'])
-        if obj['errors']:
+        if 'errors' in obj:
             raise exceptions.NotAuthorized()
         return obj['listener'], obj['routes']
 
