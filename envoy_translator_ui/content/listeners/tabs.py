@@ -9,7 +9,7 @@ class ListenerOverviewTab(tabs.Tab):
     template_name = 'project/listeners/_listener_detail_overview.html'
 
     def get_context_data(self, request):
-        return {"listener": self.tab_group.kwargs['listener'], "routes": self.tab_group.kwargs['task']}
+        return {"listener": self.tab_group.kwargs['listener'], "routes": self.tab_group.kwargs['routes']}
 
 
 class ListenerRoutesTab(tabs.TableTab):
