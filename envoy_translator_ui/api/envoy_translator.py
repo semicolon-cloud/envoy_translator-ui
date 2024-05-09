@@ -25,7 +25,7 @@ def _get_endpoint_url(request):
     # If the request is made by an anonymous user, this endpoint request fails.
     # Thus, we must hardcode this in Horizon.
     if getattr(request.user, "service_catalog", None):
-        url = base.url_for(request, service_type='envoy-translator')
+        url = base.url_for(request, service_type='external')
 
 
     # Ensure ends in slash
