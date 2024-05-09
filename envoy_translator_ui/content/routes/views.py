@@ -80,9 +80,6 @@ class CreateRouteView(forms.ModalFormView):
     page_title = _("Create Route")
 
 
-
-
-
 class UpdateRouteView(forms.ModalFormView):
     form_class = route_forms.UpdateRouteForm
     form_id = "update_route_form"

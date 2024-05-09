@@ -1,0 +1,23 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+
+{% block modal_id %}create_route_form{% endblock %}
+{% block modal-header %}{% trans "Create Route" %}{% endblock %}
+{% block form_action %}{% url 'horizon:project:routes:create' %}{% endblock %}
+
+{% block modal-body %}
+  <div class="left">
+    <fieldset>
+      {% include "horizon/common/_form_fields.html" %}
+    </fieldset>
+  </div>
+  <div class="right">
+    <h3>{% trans "Description:" %}</h3>
+    <p>{% trans "Create a new route to accept external connections" %}</p>
+  </div>
+{% endblock %}
+
+{% block modal-footer %}
+    <button type="submit" class="btn btn-primary">{% trans "Create" %}</button>
+    <a href="{% url 'horizon:project:routes:index' %}" class="btn btn-default secondary cancel pull-left">{% trans "Cancel" %}</a>
+{% endblock %}
