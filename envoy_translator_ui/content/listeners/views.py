@@ -61,5 +61,5 @@ class ListenerDetailView(tabs.TabView):
 
 
     def get_tabs(self, request, *args, **kwargs):
-        task = self.get_data()
-        return self.tab_group_class(request, task=task, **kwargs)
+        listener, routes = self.get_data()
+        return self.tab_group_class(request, listener=listener, routes=routes, **kwargs)
