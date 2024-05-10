@@ -20,7 +20,7 @@ class CreateListenerForm(forms.SelfHandlingForm):
     type = forms.ChoiceField(label=_("Listener Type"),
                              required=True,
                              initial="tls",
-                             choices=(("http", _("HTTP")), ("tls", _("TLS")), ("TCP", _("TCP"))))
+                             choices=(("http", _("HTTP")), ("tls", _("TLS")), ("tcp", _("TCP"))))
     def handle(self, request, data):
         try:
             response = envoy_translator.listener_create(request, data)
